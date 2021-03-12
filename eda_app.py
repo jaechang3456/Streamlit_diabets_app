@@ -17,7 +17,7 @@ import h5py
 def run_eda_app() :
     st.subheader('EDA 화면입니다.')
 
-    df = pd.read_csv('diabetes.csv')
+    df = pd.read_csv('data/diabetes.csv')
 
     radio_menu = ['DataFrame', 'Statistics']
     selected_radio = st.radio('선택하세요.',radio_menu)
