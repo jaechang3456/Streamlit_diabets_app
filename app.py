@@ -23,7 +23,7 @@ def main():
 
     # 사이드바 메뉴
     menu = ['Home','EDA','ML']
-    choice = st.sidebar.selectbox('Menu',menu)
+    .choice = st.sidebar.selectbox('Menu',menu)
 
     if choice == 'Home':
         st.write('이 앱은 당뇨병을 예측 하는 앱입니다. 해당 환자의 정보를 입력하면, 당뇨병인지 아닌지를 예측하는 앱입니다.')       
