@@ -25,12 +25,6 @@ def run_ml_app() :
 
     model = joblib.load('data/best_model.pkl')
 
-    # new_data = np.array([3, 88, 58, 11, 54, 24, 0.26, 22])
-    # new_data = new_data.reshape(1,-1)
-    # print(new_data)
-
-    # st.write(model.predict(new_data))
-
     pre = st.number_input('임신횟수를 입력하세요.', min_value=0)
 
     glu = st.number_input('공복혈당을 입력하세요.', min_value=0)
@@ -39,17 +33,25 @@ def run_ml_app() :
 
     sti = st.number_input('피부두께를 입력하세요.',min_value=0)
 
-    age = st.number_input('나이를 입력하세요.',min_value=0, max_value = 120)
-
     ins = st.number_input('인슐린 농도를 입력하세요.')
 
-    BMI = st.number_input('BMI를 입력하세요', min_value=0)
+    BMI = st.number_input('BMI를 입력하세요')
 
-    new_data = np.array( [pre, glu, bp, sti, age, ins, BMI ] )
+    DPF = st.number_input('당뇨 내력 가중치를 입력하세요.')
+
+    age = st.number_input('나이를 입력하세요.',min_value=0, max_value = 120)
+
+    new_data = np.array( [pre, glu, bp, sti, ins, BMI, DPF, age ] )
     new_data = new_data.reshape(1,-1)
+    # print(new_data)
 
     y_pred = model.predict(new_data)
 
+    if st.button('결과 확인'):
+        if y_pred == 1:
+            st.write('당뇨병이 의심됩니다. 혈당관리가 필요 합니다.')
+        else :
+            st.write('당뇨병이 의심되지 않습니다. 건강합니다.')
 
 
 
